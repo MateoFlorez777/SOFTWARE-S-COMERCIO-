@@ -165,9 +165,6 @@ const Cart = () => {
               No hay nada en su bolsa, agreguemos algunos artículos
             </p>
           </div>
-          <Button variant="outlined" sx={{ py: "11px" }}>
-            Agregar artículo desde la lista de deseos
-          </Button>
         </div>
       )}
       <Snackbar

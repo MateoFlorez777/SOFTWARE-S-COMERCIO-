@@ -39,67 +39,6 @@ export default function TransactionTable() {
   return (
     <>
 
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Fecha</TableCell>
-              <TableCell>Detalles del cliente</TableCell>
-              <TableCell>Pedido</TableCell>
-              <TableCell align="right">Importe</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {transaction.transactions.map((item: Transaction) => (
-              <TableRow key={item.id}>
-                <TableCell align="left"><div className='space-y-1'>
-                  <h1 className='font-medium'>{redableDateTime(item.date).split("at")[0]}</h1>
-                  <h1 className='text-xs text-gray-600 font-semibold'>{redableDateTime(item.date).split("at")[1]}</h1>
-                  </div></TableCell>
-                <TableCell component="th" scope="row">
-                  <div className='space-y-2'>
-                    <h1>{item.customer.fullName}</h1>
-                    <h1 className='font-semibold'>{item.customer.email}</h1>
-                    <h1 className='font-bold text-gray-600'>{item.customer.mobile}</h1>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  ID del pedido: <strong> {item.order.id} </strong>
-                </TableCell>
-                <TableCell
-                  align="right">
-                  ${item.order.totalSellingPrice}
-                </TableCell>
-                {/* <TableCell align="right">
-                  <Button
-                    size='small'
-                    onClick={(e) => handleClick(e, item.id)}
-                    color='primary'
-                    className='bg-primary-color'>
-                    Status
-                  </Button>
-                  <Menu
-                    id={`status-menu ${item.id}`}
-                    anchorEl={anchorEl[item.id]}
-                    open={Boolean(anchorEl[item.id])}
-                    onClose={() => handleClose(item.id)}
-                    MenuListProps={{
-                      'aria-labelledby': `status-menu ${item.id}`,
-                    }}
-                  >
-                    {orderStatus.map((status) =>
-                      <MenuItem 
-                      key={status.label} 
-                      onClick={() => handleUpdateOrder(item.id, status.label)}>
-                        {status.label}</MenuItem>
-                    )}
-                  </Menu>
-                </TableCell> */}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
     </>
   );
 }

@@ -8,13 +8,11 @@ import UserDetails from './UserDetails'
 import { useAppDispatch, useAppSelector } from '../../../Redux Toolkit/Store'
 import { performLogout } from '../../../Redux Toolkit/Customer/AuthSlice'
 import userEvent from '@testing-library/user-event'
-import Addresses from './Adresses'
 
 const menu = [
     { name: "pedidos", path: "/account/orders" },
     { name: "perfil", path: "/account/profile" },
 
-    { name: "direcciones", path: "/account/addresses" },
     { name: "cerrar sesión", path: "/" }
 ]
 const Profile = () => {
@@ -64,7 +62,6 @@ const Profile = () => {
                         <Route path='/' element={<UserDetails />} />
                         <Route path='/orders' element={<Order />} />
                         <Route path='/profile' element={<UserDetails />} />
-                        <Route path='/addresses' element={<Addresses />} />
                         {/* addresses */}
                     </Routes>
 

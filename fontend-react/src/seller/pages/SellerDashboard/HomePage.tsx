@@ -36,78 +36,26 @@ const HomePage = () => {
     setChartType(event.target.value as string);
   };
   return (
-    <div className="space-y-5">
-      <section className="grid grid-cols-4 gap-5">
-        <div className="col-span-4 md:col-span-2 lg:col-span-1">
-          <ReportCard
-            icon={<AccountBalanceIcon />}
-            value={"$" + "" + sellers.report?.totalEarnings}
-            title={"Ganancias totales"}
-          />
-        </div>
-        <div className="col-span-4 md:col-span-2 lg:col-span-1">
-          <ReportCard
-            icon={<AccountBalanceIcon />}
-            value={sellers.report?.totalSales}
-            title={"Ventas totales"}
-          />
-        </div>
-        <div className="col-span-4 md:col-span-2 lg:col-span-1">
-          <ReportCard
-            icon={<AccountBalanceIcon />}
-            value={sellers.report?.totalRefunds}
-            title={"Total de reembolsos"}
-          />
-        </div>
-
-        <div className="col-span-4 md:col-span-2 lg:col-span-1">
-          <ReportCard
-            icon={<AccountBalanceIcon />}
-            value={sellers.report?.canceledOrders}
-            title={"Pedidos cancelados"}
-          />
-        </div>
-      </section>
-
-      <div className="h-[500px] space-y-10 p-5 lg:p-10 bg-slate-800 rounded-md">
-        {/* <h1 className="text-lg font-bold text-white ">Total Revanue</h1> */}
-        <div className="w-40" >
-          <FormControl sx={{color:'white'}} fullWidth>
-            <InputLabel sx={{color:'white'}} id="demo-simple-select-label">gráfico</InputLabel>
-            <Select
-            sx={{
-                color: 'white', 
-                '.MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'white',
-                },
-                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'white',
-                },
-                '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'white',
-                },
-                '.MuiSvgIcon-root': {
-                  color: 'white',
-                },
-              }}
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={chartType}
-              label="Chart Type"
-              onChange={handleChange}
-            >
-              {Chart.map((item) => (
-                <MenuItem value={item.value}>{item.name}</MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-
-        <div className="h-[350px]">
-          <SellingChart chartType={chartType} />
-        </div>
-      </div>
+<div className="flex justify-center items-start mt-40">
+  <section className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full max-w-4xl px-4">
+    <div className="flex justify-center">
+      <ReportCard
+        icon={<AccountBalanceIcon fontSize="large" />}
+        value={"$" + sellers.report?.totalEarnings}
+        title={"Ganancias totales"}
+      />
     </div>
+    <div className="flex justify-center">
+      <ReportCard
+        icon={<AccountBalanceIcon fontSize="large" />}
+        value={sellers.report?.totalSales}
+        title={"Ventas totales"}
+      />
+    </div>
+  </section>
+</div>
+
+
   );
 };
 

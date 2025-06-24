@@ -16,7 +16,6 @@ public class OrderItem {
 	private String productName;
 	private String productImage;
 	private String size;
-
 	private Integer price;
 	private Integer quantity;
 

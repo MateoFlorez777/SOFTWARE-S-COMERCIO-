@@ -38,7 +38,7 @@ const Home = () => {
                 <TopBrand />
             </section>}
         {homePage.homePageData?.deals &&    <section className='pt-10'>
-            <h1 className='text-center text-lg lg:text-4xl font-bold text-[#00927c] pb-5 lg:pb-5'>Cada venta el inicio de una relación duradera</h1>
+            <h1 className='text-center text-lg lg:text-4xl font-bold text-[#00927c] pb-5 lg:pb-5'>Cada venta es el inicio de una relación duradera</h1>
             </section>}
             <section className='lg:px-20 relative h-[200px] lg:h-[450px] object-cover'>
                 <img className='w-full h-full' src={"/seller_banner_image.jpg"} alt="" />

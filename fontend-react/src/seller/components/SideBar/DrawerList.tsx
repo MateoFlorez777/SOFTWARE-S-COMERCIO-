@@ -41,19 +41,7 @@ const menu = [
     path: "/seller/payment",
     icon: <AccountBalanceWalletIcon className="text-primary-color" />,
     activeIcon: <AccountBalanceWalletIcon className="text-white" />,
-  },
-  {
-    name: "Transacción",
-    path: "/seller/transaction",
-    icon: <ReceiptIcon className="text-primary-color" />,
-    activeIcon: <ReceiptIcon className="text-white" />,
-  },
-  // {
-  //   name: "Inventory",
-  //   path: "/seller/inventory",
-  //   icon: <MailIcon className="text-primary-color" />,
-  //   activeIcon: <MailIcon className="text-white" />,
-  // },
+  }
 ];
 
 const menu2 = [

@@ -4,7 +4,6 @@ import Home from '../customer/pages/Home/Home'
 import Products from '../customer/pages/Products/Products'
 import ProductDetails from '../customer/pages/Products/ProductDetails/ProductDetails'
 import Cart from '../customer/pages/Cart/Cart'
-import Address from '../customer/pages/Checkout/AddressPage'
 import Profile from '../customer/pages/Account/Profile'
 import BecomeSeller from '../customer/pages/BecomeSeller/BecomeSeller'
 import Footer from '../customer/components/Footer/Footer'
@@ -40,7 +39,6 @@ const CustomerRoutes = () => {
         <Route path='/product-details/:categoryId/:name/:productId' element={<ProductDetails />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/wishlist' element={<Wishlist />} />
-        <Route path='/checkout/address' element={<Address />} />
         <Route path='/account/*' element={<Profile />} />
         <Route path='/login' element={<Auth/>} />
         <Route path='/become-seller' element={<BecomeSeller />} />

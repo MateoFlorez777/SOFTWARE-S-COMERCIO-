@@ -36,12 +36,14 @@ public class OrderServiceImpl implements OrderService {
             orderItem.setOrder(order);
             orderItem.setProductId(cartItem.getProduct().getId());
             orderItem.setProductName(cartItem.getProduct().getTitle());
+            orderItem.setProductImage(cartItem.getProduct().getImages().isEmpty() ? null : cartItem.getProduct().getImages().get(0)); // ✅
             orderItem.setSize(cartItem.getSize());
-            orderItem.setPrice(cartItem.getSellingPrice());
+            orderItem.setPrice(cartItem.getSellingPrice() / cartItem.getQuantity()); // ✅ PRECIO UNITARIO
             orderItem.setQuantity(cartItem.getQuantity());
 
             order.getOrderItems().add(orderItem);
         }
+
 
         cartService.clearCart(user);
         return orderRepository.save(order);

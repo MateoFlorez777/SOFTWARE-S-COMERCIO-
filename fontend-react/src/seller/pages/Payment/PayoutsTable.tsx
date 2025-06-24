@@ -15,19 +15,6 @@ const PayoutsTable = () => {
 
   return (
     <div>
-          <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Fecha</TableCell>
-              <TableCell>Importe</TableCell>
-              <TableCell align='right'>Estado</TableCell>
-              {/* <TableCell align="right">Amount</TableCell> */}
-            </TableRow>
-          </TableHead>
-          
-        </Table>
-      </TableContainer>
     </div>
   )
 }
