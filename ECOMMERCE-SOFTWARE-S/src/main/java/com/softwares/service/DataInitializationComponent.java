@@ -2,6 +2,7 @@ package com.softwares.service;
 
 
 import com.softwares.domain.USER_ROLE;
+import com.softwares.models.BusinessDetails;
 import com.softwares.models.Seller;
 import com.softwares.models.User;
 import com.softwares.repository.SellerRepository;
@@ -53,9 +54,15 @@ public class DataInitializationComponent implements CommandLineRunner {
             Seller sellerUser = new Seller();
 
             sellerUser.setPassword(passwordEncoder.encode("seller1234"));
-            sellerUser.setSellerName("Seller");
+            sellerUser.setSellerName("Selle");
             sellerUser.setEmail(sellerUsername);
             sellerUser.setRole(USER_ROLE.ROLE_SELLER);
+
+
+            BusinessDetails businessDetails = new BusinessDetails();
+            businessDetails.setBusinessName("MATECNO");
+            sellerUser.setBusinessDetails(businessDetails);
+
 
             Seller seller= sellerRepository.save(sellerUser);
 
