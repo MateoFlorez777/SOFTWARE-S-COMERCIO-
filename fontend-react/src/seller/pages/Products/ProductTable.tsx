@@ -67,7 +67,7 @@ export default function ProductTable() {
 
   return (
     <>
-      <h1 className='pb-5 font-bold text-xl'>Products</h1>
+      <h1 className='pb-5 font-bold text-xl'>Productos</h1>
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -95,7 +95,7 @@ export default function ProductTable() {
                 <StyledTableCell align="right"> ${item.mrpPrice}.0</StyledTableCell>
                 <StyledTableCell align="right"> ${item.sellingPrice}.0</StyledTableCell>
                 <StyledTableCell align="right">{item.color}</StyledTableCell>
-                <StyledTableCell align="right"> <Button onClick={handleUpdateStack(item.id)} size='small'>{item.in_stock?"in_stock":"out_stock"}</Button></StyledTableCell>
+                <StyledTableCell align="right"> <Button onClick={handleUpdateStack(item.id)} size='small'>{item.in_stock?"en existencia":"sin existencia"}</Button></StyledTableCell>
                 <StyledTableCell align="right">
                   <IconButton onClick={(()=>navigate("/seller/update-product/"+item.id))} color='primary' className='bg-primary-color'>
                     <EditIcon />

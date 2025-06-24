@@ -193,7 +193,7 @@ const UpdateHomeCategoryForm = ({
         type="submit"
         sx={{ py: ".9rem" }}
       >
-        Submit
+        enviar
       </Button>
     </Box>
   );

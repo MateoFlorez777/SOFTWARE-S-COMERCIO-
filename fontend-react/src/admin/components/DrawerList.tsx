@@ -37,12 +37,6 @@ const menu = [
         activeIcon: <HomeIcon className="text-white" />,
     },
     {
-        name: "Categoría de Electrónica",
-        path: "/admin/electronics-category",
-        icon: <ElectricBoltIcon className="text-primary-color" />,
-        activeIcon: <ElectricBoltIcon className="text-white" />,
-    },
-    {
         name: "Ofertas",
         path: "/admin/deals",
         icon: <LocalOfferIcon className="text-primary-color" />,
@@ -53,12 +47,6 @@ const menu = [
 
 const menu2 = [
 
-    {
-        name: "Cuenta",
-        path: "/admin/account",
-        icon: <AccountBoxIcon className="text-primary-color" />,
-        activeIcon: <AccountBoxIcon className="text-white" />,
-    },
     {
         name: "Cerrar sesión",
         path: "/",

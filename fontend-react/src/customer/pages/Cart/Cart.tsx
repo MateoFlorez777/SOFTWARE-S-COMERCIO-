@@ -66,6 +66,30 @@ const Cart = () => {
   }, [coupone.couponApplied, coupone.error]);
 
   console.log("carrito ", coupone);
+
+  const handleCheckout = async () => {
+  try {
+    const res = await fetch("http://localhost:8080/api/paypal/payment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+      body: JSON.stringify({
+        total: cart.cart?.totalSellingPrice,
+      }),
+    });
+
+    const data = await res.json();
+    if (data && data.redirectUrl) {
+      window.location.href = data.redirectUrl; // Redirige a PayPal
+    }
+  } catch (error) {
+    console.error("Error en el pago", error);
+  }
+
+};
+
   return (
     <>
       {cart.cart && cart.cart?.cartItems.length !== 0 ? (
@@ -84,7 +108,7 @@ const Cart = () => {
                     <LocalOfferIcon
                       sx={{ color: teal[600], fontSize: "17px" }}
                     />
-                    <span>Apply Coupens</span>
+                    <span>Aplicar cupones</span>
                   </div>
                 </div>
                 {!cart.cart?.couponCode ? (
@@ -122,14 +146,7 @@ const Cart = () => {
               <section className="border rounded-md">
                 <PricingCard />
                 <div className="p-5">
-                  <Button
-                    onClick={() => navigate("/checkout/address")}
-                    sx={{ py: "11px" }}
-                    variant="contained"
-                    fullWidth
-                  >
-                    COMPRAR AHORA
-                  </Button>
+
                 </div>
               </section>
 

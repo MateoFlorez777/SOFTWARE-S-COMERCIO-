@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useAppDispatch } from '../../../Redux Toolkit/Store';
-import { createOrder } from '../../../Redux Toolkit/Customer/OrderSlice';
 import { Address } from '../../../types/userTypes';
 
 // Validation schema
@@ -48,14 +47,11 @@ const AddressForm:React.FC<AddressFormProp> = ({handleClose,paymentGateway}) => 
     validationSchema: ContactSchema,
     onSubmit: (values) => {
       console.log("Formulario enviado", values);
-      handleCreateOrder(values as Address);
       handleClose();
     },
   });
 
-  const handleCreateOrder=(address:Address)=>{
-    dispatch(createOrder({address,jwt:localStorage.getItem('jwt')|| "",paymentGateway}))
-  }
+
 
   return (
     <Box sx={{ maxWidth: 600, mx: 'auto'}}>

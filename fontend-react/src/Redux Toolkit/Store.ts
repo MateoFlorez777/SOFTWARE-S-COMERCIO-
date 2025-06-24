@@ -5,59 +5,64 @@ import {
 
 import { thunk } from "redux-thunk";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import sellerSlice from "./Seller/sellerSlice";
-import sellerAuthenticationSlice from "./Seller/sellerAuthenticationSlice";
-import sellerProductSlice from "./Seller/sellerProductSlice";
+
+// Customer
 import ProductSlice from "./Customer/ProductSlice";
 import CartSlice from "./Customer/CartSlice";
 import AuthSlice from "./Customer/AuthSlice";
 import UserSlice from "./Customer/UserSlice";
-import OrderSlice from "./Customer/OrderSlice";
-import sellerOrderSlice from "./Seller/sellerOrderSlice";
-import payoutSlice from "./Seller/payoutSlice";
-import transactionSlice from "./Seller/transactionSlice";
+import OrderSlice from "./Customer/OrderSlice"; // Este es el correcto
 import CouponSlice from "./Customer/CouponSlice";
-import AdminCouponSlice from "./Admin/AdminCouponSlice";
 import ReviewSlice from "./Customer/ReviewSlice";
 import WishlistSlice from "./Customer/WishlistSlice";
-import revenueChartSlice from "./Seller/revenueChartSlice";
 import CustomerSlice from "./Customer/Customer/CustomerSlice";
+
+// Seller
+import sellerSlice from "./Seller/sellerSlice";
+import sellerAuthenticationSlice from "./Seller/sellerAuthenticationSlice";
+import sellerProductSlice from "./Seller/sellerProductSlice";
+
+import payoutSlice from "./Seller/payoutSlice";
+import transactionSlice from "./Seller/transactionSlice";
+import revenueChartSlice from "./Seller/revenueChartSlice";
+
+// Admin
+import AdminCouponSlice from "./Admin/AdminCouponSlice";
 import DealSlice from "./Admin/DealSlice";
 import AdminSlice from "./Admin/AdminSlice";
 
 const rootReducer = combineReducers({
-  
   // customer
   auth: AuthSlice,
   user: UserSlice,
   products: ProductSlice,
   cart: CartSlice,
-  orders: OrderSlice,
+  orders: OrderSlice, // ← Este es el slice que maneja los pedidos del cliente
   coupone: CouponSlice,
   review: ReviewSlice,
   wishlist: WishlistSlice,
-  homePage:CustomerSlice,
+  homePage: CustomerSlice,
 
   // seller
   sellers: sellerSlice,
   sellerAuth: sellerAuthenticationSlice,
   sellerProduct: sellerProductSlice,
-  sellerOrder: sellerOrderSlice,
   payouts: payoutSlice,
   transaction: transactionSlice,
   revenueChart: revenueChartSlice,
 
   // admin
-  adminCoupon:AdminCouponSlice,
-  adminDeals:DealSlice,
-  admin:AdminSlice,
-  deal:DealSlice
+  adminCoupon: AdminCouponSlice,
+  adminDeals: DealSlice,
+  admin: AdminSlice,
+  deal: DealSlice,
 });
 
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 });
+
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof rootReducer>;
 

@@ -83,7 +83,7 @@ const CreateDealForm = () => {
         type="submit"
         sx={{ py: ".9rem" }}
       >
-        Submit
+        Enviar
       </Button>
     </Box>
   )

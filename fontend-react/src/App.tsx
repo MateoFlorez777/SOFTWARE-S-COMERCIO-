@@ -11,7 +11,6 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import SellerDashboard from './seller/pages/SellerDashboard/SellerDashboard';
 import CustomerRoutes from './routes/CustomerRoutes';
 import AdminDashboard from './admin/pages/Dashboard/Dashboard';
-import SellerAccountForm from './customer/pages/BecomeSeller/SellerAccountForm';
 import SellerAccountVerification from './seller/pages/SellerAccountVerification';
 import SellerAccountVerified from './seller/pages/SellerAccountVerified';
 import { useAppDispatch, useAppSelector } from './Redux Toolkit/Store';
@@ -23,6 +22,8 @@ import AdminAuth from './admin/pages/Auth/AdminAuth';
 import { fetchUserProfile } from './Redux Toolkit/Customer/UserSlice';
 import { createHomeCategories, fetchHomePageData } from './Redux Toolkit/Customer/Customer/AsyncThunk';
 import { homeCategories } from './data/homeCategories';
+import PaypalSuccess from './customer/pages/paypal/PaypalSuccess';
+import PaypalCancel from './customer/pages/paypal/PaypalCancel';
 
 
 function App() {
@@ -55,6 +56,10 @@ const navigate=useNavigate();
           <Route path='/seller-account-verified' element={<SellerAccountVerified />} />
           <Route path='/become-seller' element={<BecomeSeller />} />
           <Route path='/admin-login' element={<AdminAuth />} />
+
+            {/* PayPal Rutas */}
+          <Route path='/paypal/success' element={<PaypalSuccess />} />
+          <Route path='/paypal/cancel' element={<PaypalCancel />} />
 
 
 

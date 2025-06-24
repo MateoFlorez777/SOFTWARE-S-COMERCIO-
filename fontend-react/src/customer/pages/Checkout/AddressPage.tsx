@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import AddressForm from './AddresssForm'
 import AddressCard from './AddressCard'
 import AddIcon from '@mui/icons-material/Add';
-import { createOrder } from '../../../Redux Toolkit/Customer/OrderSlice'
 import { Address } from '../../../types/userTypes'
 import { useAppDispatch, useAppSelector } from '../../../Redux Toolkit/Store'
 import userEvent from '@testing-library/user-event'
@@ -44,14 +43,7 @@ const AddressPage = () => {
         setValue(event.target.value);
     };
 
-    const handleCreateOrder = () => {
-        if (user.user?.addresses)
-            dispatch(createOrder({
-                paymentGateway,
-                address: user.user?.addresses[value],
-                jwt: localStorage.getItem('jwt') || ""
-            }))
-    }
+
 
     const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPaymentGateway((event.target as HTMLInputElement).value);
@@ -109,14 +101,7 @@ const AddressPage = () => {
                         </RadioGroup>
 
                     </section>
-                    <section className='border rounded-md'>
-                        <PricingCard />
-                        <div className='p-5'>
-                            <Button
-                                onClick={handleCreateOrder} sx={{ py: "11px" }}
-                                variant='contained' fullWidth>Finalizar compra</Button>
-                        </div>
-                    </section>
+
 
                 </div>
 

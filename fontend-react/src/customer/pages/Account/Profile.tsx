@@ -4,8 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Order from './Order'
 import UserDetails from './UserDetails'
-import SavedCards from './SavedCards'
-import OrderDetails from './OrderDetails'
+
 import { useAppDispatch, useAppSelector } from '../../../Redux Toolkit/Store'
 import { performLogout } from '../../../Redux Toolkit/Customer/AuthSlice'
 import userEvent from '@testing-library/user-event'
@@ -14,7 +13,6 @@ import Addresses from './Adresses'
 const menu = [
     { name: "pedidos", path: "/account/orders" },
     { name: "perfil", path: "/account/profile" },
-    { name: "tarjetas guardadas", path: "/account/saved-card" },
 
     { name: "direcciones", path: "/account/addresses" },
     { name: "cerrar sesión", path: "/" }
@@ -41,11 +39,7 @@ const Profile = () => {
         setOpenSnackbar(false);
     };
 
-    useEffect(() => {
-        if (user.profileUpdated || orders.orderCanceled || user.error) {
-            setOpenSnackbar(true);
-        }
-    }, [user.profileUpdated,orders.orderCanceled]);
+
     return (
         <div className='px-5 lg:px-52 min-h-screen mt-10 '>
 
@@ -69,9 +63,7 @@ const Profile = () => {
                     <Routes>
                         <Route path='/' element={<UserDetails />} />
                         <Route path='/orders' element={<Order />} />
-                        <Route path='/orders/:orderId/:orderItemId' element={<OrderDetails />} />
                         <Route path='/profile' element={<UserDetails />} />
-                        <Route path='/saved-card' element={<SavedCards />} />
                         <Route path='/addresses' element={<Addresses />} />
                         {/* addresses */}
                     </Routes>
@@ -79,21 +71,7 @@ const Profile = () => {
                 </div>
 
             </div>
-            <Snackbar
-                anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                open={snackbarOpen}
-                autoHideDuration={6000}
-                onClose={handleCloseSnackbar}
-            >
-                <Alert
-                    onClose={handleCloseSnackbar}
-                    severity={user.error ? "error" : "success"}
-                    variant="filled"
-                    sx={{ width: "100%" }}
-                >
-                    {user.error ? user.error : orders.orderCanceled?"order canceled successfully": "success"}
-                </Alert>
-            </Snackbar>
+
         </div>
     )
 }

@@ -145,7 +145,7 @@ const Navbar = () => {
               startIcon={<StorefrontIcon />}
               variant="outlined"
             >
-              Convertirse en vendedor
+              INICIA COMO VENDEDOR
             </Button>
           )}
         </div>

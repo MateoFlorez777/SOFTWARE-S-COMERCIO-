@@ -1,54 +1,46 @@
-import React from 'react'
-import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
-import { Avatar, Button } from '@mui/material';
-import { teal } from '@mui/material/colors';
-import { useNavigate } from 'react-router-dom';
-import { Order, OrderItem } from '../../../types/orderTypes';
-import { formatDate } from '../../util/fomateDate';
+import React from "react";
 
-interface OrderItemCardProps{
-    item:OrderItem,
-    order:Order
+interface OrderItem {
+  productId: number;
+  productName: string;
+  productImage?: string; // Por si en el futuro lo agregas
+  size: string;
+  price: number;
+  quantity: number;
 }
-const OrderItemCard:React.FC<OrderItemCardProps> = ({item,order}) => {
-    const navigate = useNavigate()
-    return (
-        <div onClick={() => navigate(`/account/orders/${order.id}/${item.id}`)} className='text-sm bg-white p-5 space-y-4 border rounded-md cursor-pointer'>
 
-            <div className='flex items-center gap-3'>
-                <div>
-                    <Avatar sizes='small' sx={{ bgcolor: teal[500] }}>
-                        <ElectricBoltIcon />
-                    </Avatar>
+interface Props {
+  item: OrderItem;
+}
 
-                </div>
-                <div>
-                    <h1 className='font-bold text-teal-600'>{order.orderStatus}
-                    </h1>
-                    <p>Arriving by {formatDate(order.deliverDate)}</p>
-                </div>
-            </div>
-            <div className='p-5 bg-teal-50 flex gap-3 '>
-                <div className=''>
-                    <img className='w-[70px]'
-                     src={item.product.images[0]} alt="" />
-                </div>
-                <div className='w-full space-y-2'>
-                    <h1 className='font-bold'>{item.product.seller?.businessDetails.businessName}
-                    </h1>
-                    <p>
-                        {item.product.title}
-                    </p>
-                    <p><strong>size : </strong>
-                        FREE</p>
-
-                </div>
-
-
-            </div>
-
+const OrderItemCard: React.FC<Props> = ({ item }) => {
+  return (
+    <div className="flex items-center justify-between border rounded-md p-3 mb-2 bg-gray-50 shadow-sm">
+      <div className="flex items-center gap-4">
+        {/* Si tienes imágenes, usa item.productImage */}
+        <div className="w-16 h-16 bg-gray-200 rounded-md flex items-center justify-center text-gray-500 text-xs">
+          {item.productImage ? (
+            <img
+              src={item.productImage}
+              alt={item.productName}
+              className="object-cover w-full h-full rounded"
+            />
+          ) : (
+            "Sin imagen"
+          )}
         </div>
-    )
-}
+        <div>
+          <p className="font-medium">{item.productName}</p>
+          <p className="text-sm text-gray-600">Talla: {item.size}</p>
+          <p className="text-sm text-gray-600">Cantidad: {item.quantity}</p>
+        </div>
+      </div>
+      <div className="text-sm font-semibold text-gray-700">
+        ${item.price * item.quantity}
+      </div>
+    </div>
+  );
+};
 
-export default OrderItemCard
+export default OrderItemCard;
+

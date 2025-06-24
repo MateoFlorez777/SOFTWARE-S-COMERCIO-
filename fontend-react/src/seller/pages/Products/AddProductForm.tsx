@@ -287,23 +287,21 @@ const ProductForm = () => {
               error={formik.touched.sizes && Boolean(formik.errors.sizes)}
               required
             >
-              <InputLabel id="sizes-label">Sizes</InputLabel>
+              <InputLabel id="sizes-label">Tamaño</InputLabel>
               <Select
                 labelId="sizes-label"
                 id="sizes"
                 name="sizes"
                 value={formik.values.sizes}
                 onChange={formik.handleChange}
-                label="Tallas"
+                label="Tamaño"
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value="FREE">Única</MenuItem>
-                <MenuItem value="S">S</MenuItem>
-                <MenuItem value="M">M</MenuItem>
-                <MenuItem value="L">L</MenuItem>
-                <MenuItem value="XL">XL</MenuItem>
+                <MenuItem value="FREE">Pequeño</MenuItem>
+                <MenuItem value="S">Mediano</MenuItem>
+                <MenuItem value="M">Grande</MenuItem>
               </Select>
               {formik.touched.sizes && formik.errors.sizes && (
                 <FormHelperText>{formik.errors.sizes}</FormHelperText>

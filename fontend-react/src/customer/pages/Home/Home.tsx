@@ -28,7 +28,9 @@ const Home = () => {
     return (
         <>
         {(!homePage.loading)?<div className='space-y-5 lg:space-y-10 relative'>
-            {homePage.homePageData?.electricCategories && <ElectronicCategory />}
+                       {homePage.homePageData?.shopByCategories && <section className='flex flex-col justify-center items-center py-5 px-5 lg:px-20'>
+                
+            </section>}
 
 
           {homePage.homePageData?.grid &&  <section >
@@ -36,11 +38,7 @@ const Home = () => {
                 <TopBrand />
             </section>}
         {homePage.homePageData?.deals &&    <section className='pt-10'>
-            <h1 className='text-center text-lg lg:text-4xl font-bold text-[#00927c] pb-5 lg:pb-10'>Ofertas de hoy</h1>
-                <DealSlider/>
-            </section>}
-           {homePage.homePageData?.shopByCategories && <section className='flex flex-col justify-center items-center py-20 px-5 lg:px-20'>
-                
+            <h1 className='text-center text-lg lg:text-4xl font-bold text-[#00927c] pb-5 lg:pb-5'>Cada venta el inicio de una relación duradera</h1>
             </section>}
             <section className='lg:px-20 relative h-[200px] lg:h-[450px] object-cover'>
                 <img className='w-full h-full' src={"/seller_banner_image.jpg"} alt="" />
@@ -56,7 +54,7 @@ const Home = () => {
                             startIcon={<StorefrontIcon />}
                             variant="contained"
                         >
-                            convertirse en vendedor
+                            inicia como vendedor
                         </Button>
                     </div>
 

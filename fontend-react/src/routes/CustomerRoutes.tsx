@@ -13,7 +13,6 @@ import NotFound from '../customer/pages/NotFound/NotFound'
 import Auth from '../customer/pages/Auth/Auth'
 import { useAppDispatch, useAppSelector } from '../Redux Toolkit/Store'
 import { fetchUserCart } from '../Redux Toolkit/Customer/CartSlice'
-import PaymentSuccessHandler from '../customer/pages/Pyement/PaymentSuccessHandler'
 import Reviews from '../customer/pages/Review/Reviews'
 import WriteReviews from '../customer/pages/Review/WriteReview'
 import Wishlist from '../customer/pages/Wishlist/Wishlist'
@@ -44,7 +43,7 @@ const CustomerRoutes = () => {
         <Route path='/checkout/address' element={<Address />} />
         <Route path='/account/*' element={<Profile />} />
         <Route path='/login' element={<Auth/>} />
-        <Route path='/payment-success/:orderId' element={<PaymentSuccessHandler/>} />
+        <Route path='/become-seller' element={<BecomeSeller />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

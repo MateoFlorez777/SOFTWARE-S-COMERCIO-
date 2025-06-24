@@ -43,7 +43,7 @@ const UpdateDealForm = ({ id }: { id: number }) => {
         initialValues,
         validationSchema,
         onSubmit: (values) => {
-            console.log("Deal submit", values);
+            console.log("Enviar oferta", values);
             dispatch(
                 updateDeal(
                     {
@@ -87,7 +87,7 @@ const UpdateDealForm = ({ id }: { id: number }) => {
                 fullWidth
                 type="submit"
             >
-                Update Deal
+                Actualizar Oferta
             </Button>
         </form>
     );

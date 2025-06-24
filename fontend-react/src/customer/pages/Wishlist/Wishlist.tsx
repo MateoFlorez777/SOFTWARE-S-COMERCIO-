@@ -13,7 +13,7 @@ const Wishlist = () => {
         <div className='h-[85vh] p-5 lg:p-20'>
             {wishlist.wishlist?.products.length ?
                 <section>
-                    <h1><strong>My Wishlist</strong> {wishlist.wishlist.products.length} items</h1>
+                    <h1><strong>Mi lista de deseos</strong> {wishlist.wishlist.products.length} productos</h1>
                     <div className='pt-10 flex flex-wrap gap-5'>
 
                         {wishlist.wishlist?.products?.map((item) => <WishlistProductCard item={item} />)}

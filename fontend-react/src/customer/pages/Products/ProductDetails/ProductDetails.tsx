@@ -97,16 +97,6 @@ const ProductDetails = () => {
                     <h1 className='font-bold text-lg text-teal-950'>{products.product?.seller?.businessDetails.businessName}</h1>
                     <p className='text-gray-500 font-semibold'>{products.product?.title}</p>
 
-                    <div className='flex justify-between items-center py-2 border w-[180px] px-3 mt-5'>
-                        <div className='flex gap-1 items-center'>
-                            <span>4</span>
-                            <StarIcon sx={{ color: teal[600], fontSize: "17px" }} />
-                        </div>
-                        <Divider orientation="vertical" flexItem />
-                        <span>
-                            358 Ratings
-                        </span>
-                    </div>
 
                     <div className='space-y-2'>
                         <div className='price flex items-center gap-3 mt-5 text-lg'>
@@ -114,39 +104,24 @@ const ProductDetails = () => {
                             <span className='text thin-line-through text-gray-400 '>${products.product?.mrpPrice}</span>
                             <span className='text-[#00927c] font-semibold'>{products.product?.discountPercent}% off</span>
                         </div>
-                        <p className='text-sm'>Inclusive of all taxes. Free Shipping above $1500.</p>
                     </div>
 
                     <div className='mt-7 space-y-3'>
 
                         <div className='flex items-center gap-4'>
                             <ShieldIcon sx={{ color: teal[400] }} />
-                            <p>Authentic & Quality Assured</p>
-                        </div>
-
-                        <div className='flex items-center gap-4'>
-                            <WorkspacePremiumIcon sx={{ color: teal[400] }} />
-                            <p>100% money back guarantee</p>
+                            <p>Autenticidad y calidad garantizadas</p>
                         </div>
 
                         <div className='flex items-center gap-4'>
                             <LocalShippingIcon sx={{ color: teal[400] }} />
-                            <p>Free Shipping & Returns</p>
+                            <p>Envío y devoluciones gratis</p>
                         </div>
-
-
-
-                        <div className='flex items-center gap-4'>
-                            <Wallet sx={{ color: teal[400] }} />
-                            <p>Pay on delivery might be available</p>
-                        </div>
-
-
 
                     </div>
 
                     <div className='mt-7 space-y-2'>
-                        <h1>QUANTITY:</h1>
+                        <h1>Cantidad:</h1>
                         <div className=' flex items-center gap-2  w-[140px] justify-between'>
 
                             <Button disabled={quantity == 1} onClick={() => setQuantity(quantity - 1)} variant='outlined'>
@@ -167,12 +142,12 @@ const ProductDetails = () => {
                             onClick={handleAddCart}
                             sx={{ py: "1rem" }}
                             variant='contained' fullWidth startIcon={<AddShoppingCartIcon />}>
-                            Add To Bag
+                            agregar al carrito
                         </Button>
                         <Button
                             sx={{ py: "1rem" }}
                             variant='outlined' fullWidth startIcon={<FavoriteBorderIcon />}>
-                            Whishlist
+                            Lista de deseos
                         </Button>
 
                     </div>
@@ -180,27 +155,6 @@ const ProductDetails = () => {
                         <p >
                             {products.product?.description}
                         </p>
-                    </div>
-                    <div className="ratings w-full mt-10">
-                        <h1 className="font-semibold text-lg pb-4">
-                            Review & Ratings
-                        </h1>
-
-                        <RatingCard totalReview={review.reviews.length} />
-                        <div className='mt-10'>
-                            <div className="space-y-5">
-                                {review.reviews.map((item, i) => (
-                                    <div className='space-y-5'>
-                                        <ProductReviewCard item={item} />
-                                        <Divider />
-                                    </div>
-                                ))}
-                                <Button onClick={() => navigate(`/reviews/${productId}`)}>View All {review.reviews.length} Reviews</Button>
-                            </div>
-                        </div>
-
-
-
                     </div>
                 </section>
 

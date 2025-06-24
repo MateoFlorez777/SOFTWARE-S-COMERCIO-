@@ -1,45 +1,27 @@
 package com.softwares.models;
 
-import java.time.LocalDateTime;
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class OrderItem {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@JsonIgnore
-	@ManyToOne
-	private Order order;
-	
-	@ManyToOne
-	private Product product;
-	
+
+	private Long productId;
+	private String productName;
+	private String productImage;
 	private String size;
-	
-	private int quantity;
-	
-	private Integer mrpPrice;
-	
-	private Integer sellingPrice;
-	
-	private Long userId;
 
-	
+	private Integer price;
+	private Integer quantity;
 
+	@ManyToOne
+	@JsonIgnore // 🔥 Evita la recursión infinita al serializar
+	private Order order;
 }
+
