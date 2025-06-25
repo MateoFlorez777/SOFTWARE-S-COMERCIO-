@@ -6,7 +6,8 @@ import java.util.List;
 
 import com.softwares.config.JwtProvider;
 import com.softwares.domain.USER_ROLE;
-import com.softwares.models.SellerReport;
+import com.softwares.dto.SoldItemDto;
+import com.softwares.models.*;
 import com.softwares.response.ApiResponse;
 import com.softwares.service.*;
 import com.softwares.service.impl.CustomeUserServiceImplementation;
@@ -25,8 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.softwares.domain.AccountStatus;
 import com.softwares.exceptions.SellerException;
-import com.softwares.models.Seller;
-import com.softwares.models.VerificationCode;
 import com.softwares.repository.VerificationCodeRepository;
 import com.softwares.request.LoginRequest;
 import com.softwares.response.AuthResponse;
@@ -56,6 +55,8 @@ public class SellerController {
     private final VerificationService verificationService;
     private final JwtProvider jwtProvider;
     private final CustomeUserServiceImplementation customeUserServiceImplementation;
+    private final OrderItemService orderItemService;
+
 
 
     @PostMapping("/sent/login-top")
@@ -65,7 +66,7 @@ public class SellerController {
         String otp = OtpUtil.generateOTP();
         VerificationCode verificationCode = verificationService.createVerificationCode(otp, req.getEmail());
 
-        String subject = "Zosh Bazaar Login Otp";
+        String subject = "Software-S inicio con Otp";
         String text = "your login otp is - ";
         emailService.sendVerificationOtpEmail(req.getEmail(), verificationCode.getOtp(), subject, text);
 
@@ -196,4 +197,26 @@ public class SellerController {
         return ResponseEntity.noContent().build();
 
     }
+
+    @GetMapping("/sold-items")
+    public ResponseEntity<List<OrderItem>> getSoldItems(
+            @RequestHeader("Authorization") String jwt) throws SellerException {
+
+        String email = jwtProvider.getEmailFromJwtToken(jwt);
+        Seller seller = sellerService.getSellerByEmail(email);
+        List<OrderItem> soldItems = orderItemService.getSoldItemsBySellerId(seller.getId());
+
+        return ResponseEntity.ok(soldItems);
+    }
+
+    /*@GetMapping("/sales")
+    public ResponseEntity<List<SoldItemDto>> getSalesReport(@RequestHeader("Authorization") String jwt) throws SellerException {
+        String email = jwtProvider.getEmailFromJwtToken(jwt);
+        Seller seller = sellerService.getSellerByEmail(email);
+        List<SoldItemDto> soldItems = sellerService.getSoldItemsBySellerId(seller.getId());
+        return ResponseEntity.ok(soldItems);
+    }*/
+
+
+
 }

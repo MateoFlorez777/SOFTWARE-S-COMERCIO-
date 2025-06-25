@@ -8,7 +8,8 @@ import Payment from '../seller/pages/Payment/Payment'
 import TransactionTable from '../seller/pages/Payment/TransactionTable'
 import Invetory from '../seller/pages/Invetory/Invetory'
 import UpdateProductForm from '../seller/pages/Products/UpdateProductForm'
-import Order from '../seller/pages/Orders/Orders'
+import Orders from '../seller/pages/Orders/Orders'
+
 
 const SellerRoutes = () => {
   return (
@@ -19,8 +20,11 @@ const SellerRoutes = () => {
         <Route path='/update-product/:productId' element={<UpdateProductForm />} />
         <Route path='/invetory' element={<Invetory />} />
         <Route path='/account' element={<Profile />} />
-        <Route path='/orders' element={<Order />} />
+        <Route path='/orders' element={<Orders />} />
         <Route path='/payment' element={<Payment />} />
+
+
+        
        </Routes>
   )
 }

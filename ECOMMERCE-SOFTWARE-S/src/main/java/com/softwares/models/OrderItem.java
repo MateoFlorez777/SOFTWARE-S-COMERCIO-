@@ -19,6 +19,8 @@ public class OrderItem {
 	private Integer price;
 	private Integer quantity;
 
+
+
 	@ManyToOne
 	@JsonIgnore // 🔥 Evita la recursión infinita al serializar
 	private Order order;

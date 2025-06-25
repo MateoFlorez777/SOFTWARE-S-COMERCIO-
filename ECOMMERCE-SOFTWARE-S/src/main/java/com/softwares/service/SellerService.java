@@ -1,6 +1,7 @@
 package com.softwares.service;
 
 import com.softwares.domain.AccountStatus;
+import com.softwares.dto.SoldItemDto;
 import com.softwares.exceptions.SellerException;
 import com.softwares.models.Seller;
 
@@ -16,6 +17,6 @@ public interface SellerService {
     Seller updateSeller(Long id, Seller seller) throws SellerException;
     void deleteSeller(Long id) throws SellerException;
     Seller verifyEmail(String email,String otp) throws SellerException;
-
+    List<SoldItemDto> getSoldItemsBySellerId(Long sellerId);
     Seller updateSellerAccountStatus(Long sellerId, AccountStatus status) throws SellerException;
 }

@@ -19,7 +19,7 @@ const menu = [
     activeIcon: <DashboardIcon className="text-white" />,
   },
   {
-    name: "Pedidos",
+    name: "Ventas",
     path: "/seller/orders",
     icon: <ShoppingBagIcon className="text-primary-color" />,
     activeIcon: <ShoppingBagIcon className="text-white" />,

@@ -1,75 +1,101 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Box, Button, Menu, MenuItem, styled } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../../Redux Toolkit/Store';
-import { Order, OrderItem } from '../../../types/orderTypes';
+import React, { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../Redux Toolkit/Store";
+import { fetchSellerSales, selectSellerSales } from "../../../Redux Toolkit/Seller/sellerSalesSlice";
+import { CircularProgress, Table, TableBody, TableCell, TableHead, TableRow, Button, Box, Typography } from "@mui/material";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-const orderStatus = [
-  { color: '#FFA500', label: 'PENDING' }, 
-  { color: '#F5BCBA', label: 'PLACED' }, 
-  { color: '#F5BCBA', label: 'CONFIRMED' },
-  { color: '#1E90FF', label: 'SHIPPED' }, 
-   { color: '#32CD32', label: 'DELIVERED' }, 
-   { color: '#FF0000', label: 'CANCELLED' },
-
-];
-const orderStatusColor = {
-  PENDING: { color: '#FFA500', label: 'PENDING' }, // Orange
-  CONFIRMED:{ color: '#F5BCBA', label: 'CONFIRMED' },
-  PLACED:{ color: '#F5BCBA', label: 'PLACED' }, 
-  SHIPPED: { color: '#1E90FF', label: 'SHIPPED' }, // DodgerBlue
-  DELIVERED: { color: '#32CD32', label: 'DELIVERED' }, // LimeGreen
-  CANCELLED: { color: '#FF0000', label: 'CANCELLED' } // Red
-};
-
-export default function OrderTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+const SellerSales: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { soldItems, loading, error } = useAppSelector(selectSellerSales);
 
-  const [anchorEl, setAnchorEl] = React.useState<{ [key: number]: HTMLElement | null }>({});
+  // Estado local para controlar la paginación
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage] = useState(5); // Mostrar 5 items por página
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>, orderId: number) => {
-    setAnchorEl((prev) => ({ ...prev, [orderId]: event.currentTarget }));
+  // Calcular el total de páginas
+  const totalPages = Math.ceil(soldItems.length / itemsPerPage);
+
+  // Calcular los ítems que deben mostrarse en la página actual
+  const currentItems = soldItems.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  );
+
+  // Al montar el componente, cargar las ventas
+  useEffect(() => {
+    dispatch(fetchSellerSales());
+  }, [dispatch]);
+
+  // Funciones para navegar entre páginas
+  const nextPage = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
-  const handleClose = (orderId: number) => {
-    setAnchorEl((prev) => ({ ...prev, [orderId]: null }));
+  const prevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
   };
-
-
-
-
 
   return (
-    <>
-      <h1 className='pb-5 font-bold text-xl'>Todos los Pedidos</h1>
-    
-    </>
+    <Box p={3}>
+      <Typography variant="h5" gutterBottom>Historial de Ventas</Typography>
+
+      {loading && <CircularProgress />}
+      {error && <Typography color="error">{error}</Typography>}
+
+      {!loading && !error && soldItems.length === 0 && (
+        <Typography>No hay ventas registradas.</Typography>
+      )}
+
+      {!loading && !error && currentItems.length > 0 && (
+        <>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Imagen</TableCell>
+                <TableCell>Producto</TableCell>
+                <TableCell>Cantidad</TableCell>
+                <TableCell>Tamaño</TableCell>
+                <TableCell>Precio</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {currentItems.map((item, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    <img src={item.productImage} alt={item.productName} width="50" height="50" />
+                  </TableCell>
+                  <TableCell>{item.productName}</TableCell>
+                  <TableCell>{item.quantity}</TableCell>
+                  <TableCell>{item.size}</TableCell>
+                  <TableCell>${item.price}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <Box mt={2}>
+            <Button
+              variant="contained"
+              onClick={prevPage}
+              disabled={currentPage === 0}
+            >
+              Anterior
+            </Button>
+            <Button
+              variant="contained"
+              onClick={nextPage}
+              disabled={currentPage === totalPages - 1}
+              style={{ marginLeft: "10px" }}
+            >
+              Siguiente
+            </Button>
+          </Box>
+        </>
+      )}
+    </Box>
   );
-}
+};
+
+export default SellerSales;

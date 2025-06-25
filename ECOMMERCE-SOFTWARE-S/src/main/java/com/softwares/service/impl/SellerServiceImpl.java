@@ -3,10 +3,12 @@ package com.softwares.service.impl;
 import com.softwares.config.JwtProvider;
 import com.softwares.domain.AccountStatus;
 import com.softwares.domain.USER_ROLE;
+import com.softwares.dto.SoldItemDto;
 import com.softwares.exceptions.SellerException;
 import com.softwares.models.Address;
 import com.softwares.models.Seller;
 import com.softwares.repository.AddressRepository;
+import com.softwares.repository.OrderItemRepository;
 import com.softwares.repository.SellerRepository;
 import com.softwares.service.SellerService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,7 @@ public class SellerServiceImpl implements SellerService {
     private final AddressRepository addressRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
+    private final OrderItemRepository orderItemRepository;
 
 
     @Override
@@ -168,4 +171,11 @@ public class SellerServiceImpl implements SellerService {
         seller.setAccountStatus(status);
         return sellerRepository.save(seller);
     }
+
+    @Override
+    public List<SoldItemDto> getSoldItemsBySellerId(Long sellerId) {
+        return orderItemRepository.getSoldItemsBySellerId(sellerId);
+    }
+
+
 }
