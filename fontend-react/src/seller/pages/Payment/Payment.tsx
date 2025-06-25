@@ -71,7 +71,7 @@ const SellerSales: React.FC = () => {
           </Stack>
 
           {/* Botones de paginación */}
-          <Box mt={2} display="flex" justifyContent="space-between">
+          <Box mt={2}>
             <Button variant="contained" onClick={prevPage} disabled={currentPage === 0}>
               Anterior
             </Button>

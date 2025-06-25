@@ -6,8 +6,8 @@ import { SoldItemDto } from "../../types/SoldItemDto";
 interface SellerSalesState {
   loading: boolean;
   soldItems: SoldItemDto[];
-  totalEarnings: number;  // Ganancias totales
-  totalSales: number;     // Ventas totales
+  totalEarnings: number;  // Ganancias totales (price * quantity)
+  totalSales: number;     // Ventas totales (una por cada fila)
   error: string | null;
 }
 
@@ -27,7 +27,7 @@ export const fetchSellerSales = createAsyncThunk<any, void>(
     try {
       const response = await api.get("/sellers/sold-items", {
         headers: {
-          Authorization: `Bearer ${token}`, // ← MUY IMPORTANTE
+          Authorization: `Bearer ${token}`,
         },
       });
       return response.data;
@@ -52,15 +52,15 @@ const sellerSalesSlice = createSlice({
         state.loading = false;
         state.soldItems = action.payload;
 
-        // Calcular ganancias totales y ventas totales
+        // Ganancias totales (sumatoria de price * quantity por fila)
         const totalEarnings = action.payload.reduce(
-          (acc: number, item: SoldItemDto) => acc + item.price * item.quantity, 0
-        );
-        const totalSales = action.payload.reduce(
-          (acc: number, item: SoldItemDto) => acc + item.quantity, 0
+          (acc: number, item: SoldItemDto) => acc + item.price * item.quantity,
+          0
         );
 
-        // Guardar resultados en el estado
+        // Ventas totales (una por fila)
+        const totalSales = action.payload.length;
+
         state.totalEarnings = totalEarnings;
         state.totalSales = totalSales;
       })

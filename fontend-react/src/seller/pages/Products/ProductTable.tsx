@@ -6,26 +6,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button, IconButton, styled, TableFooter, TablePagination } from '@mui/material';
+import { Box, Button, IconButton, styled, TableFooter, TablePagination } from '@mui/material';
 import TablePaginationActions from '@mui/material/TablePagination/TablePaginationActions';
 import { useAppDispatch, useAppSelector } from '../../../Redux Toolkit/Store';
-import { fetchSellerProducts, updateProduct, updateProductStock } from '../../../Redux Toolkit/Seller/sellerProductSlice';
+import { fetchSellerProducts, updateProductStock } from '../../../Redux Toolkit/Seller/sellerProductSlice';
 import EditIcon from '@mui/icons-material/Edit';
-import { isTemplateMiddle } from 'typescript';
 import { useNavigate } from 'react-router-dom';
-
-function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
-) {
-  return { name, calories, fat, carbs, protein };
-}
-
-
-
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -41,29 +27,41 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   '&:last-child td, &:last-child th': {
     border: 0,
   },
 }));
 
 export default function ProductTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const { sellerProduct } = useAppSelector(store => store);
   const dispatch = useAppDispatch();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const { sellerProduct } = useAppSelector(store => store);
 
+  const [currentPage, setCurrentPage] = React.useState(0);
+  const itemsPerPage = 3;
 
-
+  const rows = sellerProduct.products;
+  const totalPages = Math.ceil(rows.length / itemsPerPage);
+  const currentItems = rows.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  );
 
   React.useEffect(() => {
-    dispatch(fetchSellerProducts(localStorage.getItem("jwt")))
-  }, [])
+    dispatch(fetchSellerProducts(localStorage.getItem("jwt")));
+  }, [dispatch]);
 
-  const handleUpdateStack = (id: number | undefined)=>() => {
-    dispatch(updateProductStock(id))
-  }
+  const handleUpdateStock = (id: number | undefined) => () => {
+    dispatch(updateProductStock(id));
+  };
+
+  const nextPage = () => {
+    if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
+  };
+
+  const prevPage = () => {
+    if (currentPage > 0) setCurrentPage(currentPage - 1);
+  };
 
   return (
     <>
@@ -82,22 +80,32 @@ export default function ProductTable() {
               <StyledTableCell align="right">Actualizar</StyledTableCell>
             </TableRow>
           </TableHead>
+
           <TableBody>
-            {sellerProduct.products.map((item) => (
+            {currentItems.map((item) => (
               <StyledTableRow key={item.id}>
                 <StyledTableCell component="th" scope="row">
                   <div className='flex gap-1 flex-wrap'>
-                    {item.images.map((image) => <img className='w-20 rounded-md' src={image} alt="" />)}
-
+                    {item.images.map((image, idx) => (
+                      <img key={idx} className='w-20 rounded-md' src={image} alt="" />
+                    ))}
                   </div>
                 </StyledTableCell>
                 <StyledTableCell align="right">{item.title}</StyledTableCell>
-                <StyledTableCell align="right"> ${item.mrpPrice}.0</StyledTableCell>
-                <StyledTableCell align="right"> ${item.sellingPrice}.0</StyledTableCell>
+                <StyledTableCell align="right">${item.mrpPrice}.0</StyledTableCell>
+                <StyledTableCell align="right">${item.sellingPrice}.0</StyledTableCell>
                 <StyledTableCell align="right">{item.color}</StyledTableCell>
-                <StyledTableCell align="right"> <Button onClick={handleUpdateStack(item.id)} size='small'>{item.in_stock?"en existencia":"sin existencia"}</Button></StyledTableCell>
                 <StyledTableCell align="right">
-                  <IconButton onClick={(()=>navigate("/seller/update-product/"+item.id))} color='primary' className='bg-primary-color'>
+                  <Button onClick={handleUpdateStock(item.id)} size='small'>
+                    {item.in_stock ? "en existencia" : "sin existencia"}
+                  </Button>
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  <IconButton
+                    onClick={() => navigate("/seller/update-product/" + item.id)}
+                    color='primary'
+                    className='bg-primary-color'
+                  >
                     <EditIcon />
                   </IconButton>
                 </StyledTableCell>
@@ -106,7 +114,21 @@ export default function ProductTable() {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
 
+      {/* Paginación manual abajo */}
+      <Box mt={2}>
+        <Button variant="contained" onClick={prevPage} disabled={currentPage === 0}>
+          Anterior
+        </Button>
+        <Button
+          variant="contained"
+          onClick={nextPage}
+          disabled={currentPage >= totalPages - 1}
+          style={{ marginLeft: "10px" }}
+        >
+          Siguiente
+        </Button>
+      </Box>
+    </>
   );
 }
