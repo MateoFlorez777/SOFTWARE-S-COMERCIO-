@@ -3,7 +3,7 @@ export const topBrandData=[
         image:"https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/15189594/2022/2/1/efde4d54-98ca-40cc-89f1-b5787bc532b11643659231979Rubans24KGold-PlatedRuby-StuddedBeadedHandcraftedJewellerySe5.jpg"},
         {
             name:"Fabcartz",
-            image:"https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/23807268/2023/6/29/9930b235-5318-4755-abbe-08f99e969e781688026636544LehengaCholi7.jpg",
+            image:"https://images-na.ssl-images-amazon.com/images/I/51KdNwN%2B8cL._SS400_.jpg",
 
         },
         {name:"manyawar",

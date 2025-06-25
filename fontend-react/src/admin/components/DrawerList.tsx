@@ -35,13 +35,7 @@ const menu = [
         path: "/admin/home-grid",
         icon: <HomeIcon className="text-primary-color" />,
         activeIcon: <HomeIcon className="text-white" />,
-    },
-    {
-        name: "Ofertas",
-        path: "/admin/deals",
-        icon: <LocalOfferIcon className="text-primary-color" />,
-        activeIcon: <LocalOfferIcon className="text-white" />,
-    },
+    }
    
 ];
 
