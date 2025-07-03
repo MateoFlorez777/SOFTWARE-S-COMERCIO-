@@ -33,3 +33,5 @@ build/
 .vscode/
 
 JWT_CONSTANT
+
+.env

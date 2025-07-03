@@ -8,7 +8,6 @@ export const handleCheckout = async (amount: number) => {
     }
 
     const formattedAmount = amount.toFixed(2);
-
     const response = await fetch(`http://localhost:5454/api/paypal/pay?amount=${formattedAmount}`, {
       headers: {
         Authorization: `Bearer ${jwt}`,
