@@ -47,12 +47,8 @@ npm start
 
 https://softwares-gamma.vercel.app/
 
-### 🧑‍💻 Integrantes:
 
-- Juan Mateo Rodríguez Flórez ☕
-- Santiago Infante Guzmán ⚛️
-- Andrés Felipe Culma Maceto ⚛️
-- Yesid Eduardo Muñoz Medina ⚛️
+---
 
 
 # S Backend - Software S
@@ -135,9 +131,25 @@ mvn spring-boot:run
 
 https://perfect-passion-production.up.railway.app/
 
+---
+
 ### 🔗 Url Back - Railway + Swagger
 
 https://perfect-passion-production.up.railway.app/swagger-ui/index.html
+
+---
+
+### Docker imagenes
+
+#### Backend
+https://hub.docker.com/repository/docker/santiagoinf/backend-s/general
+
+---
+
+#### Frontend
+https://hub.docker.com/repository/docker/santiagoinf/frontend-s/general
+
+---
 
 
 ### 🧑‍💻 Integrantes:
@@ -146,11 +158,3 @@ https://perfect-passion-production.up.railway.app/swagger-ui/index.html
 - Santiago Infante Guzmán ⚛️
 - Andrés Felipe Culma Maceto ⚛️
 - Yesid Eduardo Muñoz Medina ⚛️
-
-### Docker imagenes
-
-#### Backend
-https://hub.docker.com/repository/docker/santiagoinf/backend-s/general
-
-#### Frontend
-https://hub.docker.com/repository/docker/santiagoinf/frontend-s/general
