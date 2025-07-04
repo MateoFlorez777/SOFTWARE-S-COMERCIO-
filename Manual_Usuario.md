@@ -197,13 +197,16 @@ El módulo de administrador te permite tener un control total sobre el funcionam
 En el **Panel de control**, el administrador puede gestionar el estado de las cuentas de los vendedores. Al hacer clic en **CHANGE STATUS**, puedes cambiar el estado de "Pendiente de Verificación" a "Activa", por ejemplo.
 ![Panel de control del administrador para gestionar vendedores](./fontend-react/Assets/46-admin-panel-control-vendedores.png)
 ![Cambio de estado de un vendedor](./fontend-react/Assets/47-admin-cambiar-estado-vendedor.png)
-![Estado del vendedor cambiado](./fontend-react/Assets/48-admin-estado-vendedor-cambiado.png)
+
 
 ### 6.2. Gestión de Cupones
 
-* **Agregar nuevo cupón:** Rellena el formulario con los detalles del cupón y haz clic en **CREAR CUPÓN**. Una alerta confirmará la creación exitosa.
+* **Agregar nuevo cupón:** Rellena el formulario con los detalles del cupón y haz clic en **CREAR CUPÓN**.
+ ![Alerta de cupón creado](./fontend-react/Assets/50-admin-alerta-cupon-creado.png)
+ ![Estado del vendedor cambiado](./fontend-react/Assets/48-admin-estado-vendedor-cambiado.png) 
+ * Una alerta confirmará la creación exitosa.
     ![Formulario para agregar un nuevo cupón](./fontend-react/Assets/49-admin-agregar-cupon.png)
-    ![Alerta de cupón creado](./fontend-react/Assets/50-admin-alerta-cupon-creado.png)
+   
 * **Cupones:** En esta sección, puedes visualizar todos los cupones existentes, filtrarlos por estado y eliminarlos según sea necesario.
     ![Botón de la sección Cupones](./fontend-react/Assets/51-admin-seccion-cupones-btn.png)
     ![Tabla de cupones existentes](./fontend-react/Assets/52-admin-lista-cupones.png)
